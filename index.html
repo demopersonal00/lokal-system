@@ -1,1 +1,755 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LÒKAL Systems – Automatización para clínicas</title>
+  <meta name="description" content="LÒKAL Systems automatiza la gestión de WhatsApp y citas en tu clínica para que ganes tiempo y aumentes citas sin cambiar tus procesos." />
 
+  <style>
+    :root {
+      --bg-dark: #0a0a0a;
+      --bg-light: #121212;
+      --primary: #4de2b8;
+      --text-main: #ffffff;
+      --text-muted: #e0e0e0;
+      --border-subtle: #2a2a2a;
+      --error: #ff4d4d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #161616 0, #050505 50%, #000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      gap: 16px;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    nav a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.2s ease-out;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #02110c;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 30px rgba(77, 226, 184, 0.25);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--primary);
+      color: var(--text-main);
+    }
+
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 32px;
+      padding: 32px 24px;
+      border-radius: 24px;
+      background: radial-gradient(circle at top left, #202020 0, #050505 55%);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      margin-bottom: 48px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 3.2vw, 2.6rem);
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .hero-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      opacity: 0.8;
+    }
+
+    .hero-right {
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+      background: linear-gradient(145deg, #111827 0, #020617 40%, #022c22 100%);
+      border: 1px solid rgba(77, 226, 184, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      font-size: 0.85rem;
+    }
+
+    .dash-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: rgba(15, 118, 110, 0.4);
+      color: var(--primary);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .stat {
+      flex: 1;
+      padding: 10px 10px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .stat-tag {
+      font-size: 0.7rem;
+      color: var(--primary);
+      margin-top: 4px;
+    }
+
+    .conversation {
+      margin-top: 4px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px dashed rgba(148, 163, 184, 0.4);
+    }
+
+    .conversation-line {
+      font-size: 0.78rem;
+      margin-bottom: 4px;
+    }
+
+    .conversation-line span {
+      opacity: 0.8;
+    }
+
+    /* Sections */
+
+    section {
+      margin-bottom: 48px;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border-radius: 16px;
+      padding: 16px 16px 14px;
+      background: linear-gradient(160deg, #111111 0, #050505 100%);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.9rem;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .steps {
+      counter-reset: step;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .step {
+      position: relative;
+      padding: 16px 16px 18px;
+      border-radius: 16px;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.9rem;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 0.8rem;
+      color: var(--primary);
+      opacity: 0.8;
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .metric {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #050505;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .metric-value {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .metric-label {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    /* CTA / FORM */
+
+    .cta {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 24px;
+      padding: 24px 20px 22px;
+      border-radius: 20px;
+      background: radial-gradient(circle at top, #111827 0, #020617 60%);
+      border: 1px solid var(--border-subtle);
+      align-items: start;
+    }
+
+    .cta h2 {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+
+    .cta p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    input,
+    textarea {
+      background: #050505;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      padding: 8px 10px;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border 0.15s ease-out, box-shadow 0.15s ease-out;
+      font-family: inherit;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(77, 226, 184, 0.4);
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .helper {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      opacity: 0.85;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid #111827;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    footer a {
+      color: var(--primary);
+      opacity: 0.9;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .grid-4,
+      .steps,
+      .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cta {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        display: none; /* mantenerlo ultra simple en móvil */
+      }
+
+      .grid-4,
+      .steps,
+      .metrics,
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .page {
+        padding-inline: 14px;
+      }
+
+      .hero {
+        padding: 22px 16px;
+      }
+
+      .cta {
+        padding: 18px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">LÒKAL SYSTEMS</div>
+      <nav>
+        <a href="#beneficios">Servicios</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#resultados">Resultados</a>
+        <a href="#demo">Demo</a>
+      </nav>
+      <a href="#demo" class="btn btn-primary">Solicitar demo</a>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="hero-eyebrow">Automatización para clínicas y centros estéticos</div>
+        <h1>Automatizamos tu clínica para que ganes tiempo y aumentes citas.</h1>
+        <p>
+          LÒKAL Systems conecta WhatsApp, citas y seguimiento en un sistema
+          inteligente que trabaja por tu equipo: menos saturación, más visitas
+          confirmadas y pacientes mejor atendidos.
+        </p>
+        <div class="hero-cta">
+          <a href="#demo" class="btn btn-primary">Ver demo rápida</a>
+          <a href="#demo" class="btn btn-ghost">Solicitar implementación</a>
+        </div>
+        <div class="hero-meta">
+          Sin cambios drásticos en vuestro software actual. Empezamos con una
+          demo personalizada de 2 minutos.
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="dash-header">
+          <span>Panel de citas · LÒKAL</span>
+          <span class="pill">Live</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="stat-label">Citas confirmadas este mes</div>
+            <div class="stat-value">+37%</div>
+            <div class="stat-tag">vs. mes anterior</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Tiempo en WhatsApp</div>
+            <div class="stat-value">-60%</div>
+            <div class="stat-tag">equipo recepción</div>
+          </div>
+        </div>
+        <div class="conversation">
+          <div class="conversation-line">
+            <strong>Paciente</strong>: “¿Tenéis hueco esta semana por la tarde?”
+          </div>
+          <div class="conversation-line">
+            <strong>LÒKAL</strong> <span>· automático</span>: “Sí, podemos verte
+            el jueves a las 18:00 o el viernes a las 19:15. ¿Qué prefieres?”
+          </div>
+          <div class="conversation-line">
+            <strong>Paciente</strong>: “Viernes 19:15 🙌”
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section id="beneficios">
+      <div class="section-label">Qué hace LÒKAL</div>
+      <h2 class="section-title">Todo lo que tu clínica hace a mano, ahora en automático.</h2>
+      <p class="section-desc">
+        Diseñamos sistemas que se adaptan a la forma real en la que trabajáis:
+        WhatsApp, llamadas y agenda. Tú sigues mandando, LÒKAL se encarga del
+        trabajo repetitivo.
+      </p>
+
+      <div class="grid-4">
+        <div class="card">
+          <div class="card-tag">WhatsApp</div>
+          <h3>Automatización de conversaciones</h3>
+          <p>
+            Respuestas inteligentes, filtros por tipo de paciente y derivación
+            directa a cita sin que recepción tenga que contestar todo.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Citas</div>
+          <h3>Gestión inteligente de agenda</h3>
+          <p>
+            Confirmaciones, recordatorios, reenganche de cancelaciones y
+            mensajes post-visita para aumentar recurrencia.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Integración</div>
+          <h3>Encaja con tu sistema actual</h3>
+          <p>
+            Nos apoyamos en las herramientas que ya usáis (software de citas,
+            hojas, WhatsApp) y construimos encima sin complicar nada.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Crecimiento</div>
+          <h3>Más pacientes, mismo equipo</h3>
+          <p>
+            Menos tareas repetitivas, más foco en atención y ventas
+            cualificadas. Tu equipo llega a más sin trabajar más horas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA -->
+    <section id="como-funciona">
+      <div class="section-label">Cómo funciona</div>
+      <h2 class="section-title">Una implementación sencilla, pensada para clínicas ocupadas.</h2>
+      <p class="section-desc">
+        No vais a “aprender una nueva plataforma”. Nosotros configuramos, probamos
+        y os dejamos un sistema que simplemente funciona en vuestro día a día.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <h3>1. Análisis inicial</h3>
+          <p>
+            Entendemos cómo gestionáis ahora WhatsApp, llamadas y citas. Detectamos
+            cuellos de botella y oportunidades rápidas.
+          </p>
+        </div>
+        <div class="step">
+          <h3>2. Diseño del sistema</h3>
+          <p>
+            Definimos mensajes, flujos y reglas de automatización adaptadas a vuestra
+            clínica y a vuestro tono.
+          </p>
+        </div>
+        <div class="step">
+          <h3>3. Activación y pruebas</h3>
+          <p>
+            Ponemos LÒKAL a funcionar en modo controlado, revisando respuestas y
+            ajustes con vuestro equipo.
+          </p>
+        </div>
+        <div class="step">
+          <h3>4. Resultados y optimización</h3>
+          <p>
+            Medimos citas, tiempos y satisfacción, y ajustamos hasta dejar el
+            sistema fino para el día a día.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section id="resultados">
+      <div class="section-label">Resultados</div>
+      <h2 class="section-title">Lo que buscamos en cada implementación.</h2>
+      <p class="section-desc">
+        Números orientativos basados en benchmarks del sector y pruebas internas.
+        Cada clínica es única, pero el objetivo siempre es el mismo: más citas,
+        menos fricción.
+      </p>
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value">+37%</div>
+          <div class="metric-label">más citas confirmadas</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">-60%</div>
+          <div class="metric-label">tiempo que el equipo pasa en WhatsApp</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">+27%</div>
+          <div class="metric-label">pacientes nuevos al año</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">4,9/5</div>
+          <div class="metric-label">satisfacción media del cliente</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEMO / FORMULARIO -->
+    <section id="demo" class="cta">
+      <div>
+        <div class="section-label">Demo personalizada</div>
+        <h2>Te enseñamos LÒKAL aplicado a tu propia clínica.</h2>
+        <p>
+          Déjanos tus datos y preparamos una demo de 15–20 minutos centrada en
+          vuestro caso: tipo de pacientes, especialidades y volumen de citas.
+        </p>
+        <p class="helper">
+          Sin compromiso. Solo ves si tiene sentido para vosotros ahora mismo.
+        </p>
+      </div>
+
+      <div>
+        <form>
+          <label>
+            Nombre de la clínica
+            <input type="text" name="clinica" placeholder="Clínica Mandri, Centro X..." required />
+          </label>
+
+          <label>
+            Persona de contacto
+            <input type="text" name="contacto" placeholder="Nombre y cargo" required />
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="email" placeholder="correo@clinica.com" required />
+          </label>
+
+          <label>
+            Teléfono / WhatsApp
+            <input type="tel" name="telefono" placeholder="+34 ..." required />
+          </label>
+
+          <label>
+            Mejor horario para contactar (opcional)
+            <input type="text" name="horario" placeholder="Ej: Mañanas de 10:00 a 13:00" />
+          </label>
+
+          <button type="submit" class="btn btn-primary">
+            Quiero una demo personalizada
+          </button>
+
+          <div class="helper">
+            Este formulario ahora mismo es solo visual. Puedes conectarlo a tu CRM,
+            WhatsApp o a un servicio como Make, n8n o Zapier cuando quieras.
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> LÒKAL Systems. Todos los derechos reservados.</span>
+      <span>Contacto: <a href="mailto:info@lokalsystems.com">info@lokalsystems.com</a></span>
+    </footer>
+  </div>
+
+  <script>
+    // Año dinámico
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
