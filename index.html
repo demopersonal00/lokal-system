@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LÒKAL Systems – Automatización para clínicas</title>
-  <meta name="description" content="LÒKAL Systems automatiza la gestión de WhatsApp y citas en tu clínica para que ganes tiempo y aumentes citas sin cambiar tus procesos." />
+  <title>LÒKAL Systems – Automatización para negocios y profesionales</title>
+  <meta name="description" content="LÒKAL Systems automatiza WhatsApp, citas y seguimiento para que ganes tiempo, reduzcas tareas repetitivas y aumentes reservas y ventas sin cambiar tus procesos." />
 
   <style>
     :root {
-      --bg-dark: #0a0a0a;
-      --bg-light: #121212;
+      --bg-dark: #020617;
       --primary: #4de2b8;
+      --primary-soft: rgba(77, 226, 184, 0.16);
       --text-main: #ffffff;
-      --text-muted: #e0e0e0;
-      --border-subtle: #2a2a2a;
-      --error: #ff4d4d;
+      --text-muted: #cbd5f5;
+      --border-subtle: #1e293b;
     }
 
     * {
@@ -26,14 +25,14 @@
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #161616 0, #050505 50%, #000 100%);
+      background: radial-gradient(circle at top, #020617 0, #020617 40%, #000 100%);
       color: var(--text-main);
       line-height: 1.6;
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
 
     .page {
@@ -46,8 +45,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 32px;
       gap: 16px;
+      margin-bottom: 32px;
     }
 
     .logo {
@@ -61,7 +60,7 @@
     nav {
       display: flex;
       gap: 20px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
     }
 
@@ -89,18 +88,18 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 18px;
+      padding: 9px 16px;
       border-radius: 999px;
       border: 1px solid transparent;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       cursor: pointer;
-      transition: all 0.2s ease-out;
+      transition: all 0.15s ease-out;
       white-space: nowrap;
     }
 
     .btn-primary {
       background: var(--primary);
-      color: #02110c;
+      color: #022c22;
       font-weight: 600;
     }
 
@@ -129,9 +128,9 @@
       gap: 32px;
       padding: 32px 24px;
       border-radius: 24px;
-      background: radial-gradient(circle at top left, #202020 0, #050505 55%);
+      background: radial-gradient(circle at top left, #020617 0, #020617 55%, #000 100%);
       border: 1px solid var(--border-subtle);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
       margin-bottom: 48px;
     }
 
@@ -143,111 +142,47 @@
       margin-bottom: 10px;
     }
 
-    .hero h1 {
-      font-size: clamp(2rem, 3.2vw, 2.6rem);
-      margin-bottom: 14px;
+    .hero-title {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      margin-bottom: 12px;
     }
 
-    .hero p {
+    .hero-subtitle {
       font-size: 0.98rem;
       color: var(--text-muted);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
+      max-width: 32rem;
     }
 
     .hero-cta {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
     }
 
-    .hero-meta {
+    .hero-note {
       font-size: 0.8rem;
       color: var(--text-muted);
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
-    .hero-right {
-      border-radius: 18px;
-      padding: 18px 18px 16px;
-      background: linear-gradient(145deg, #111827 0, #020617 40%, #022c22 100%);
-      border: 1px solid rgba(77, 226, 184, 0.4);
+    .hero-cta-card {
+      padding: 20px;
+      border-radius: 16px;
+      background: #0b1120;
+      border: 1px solid #1e293b;
+      max-width: 360px;
       display: flex;
       flex-direction: column;
       gap: 14px;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
     }
 
-    .dash-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .pill {
-      border-radius: 999px;
-      padding: 4px 10px;
-      background: rgba(15, 118, 110, 0.4);
-      color: var(--primary);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-
-    .stat-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .stat {
-      flex: 1;
-      padding: 10px 10px;
-      border-radius: 10px;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-    }
-
-    .stat-label {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .stat-value {
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .stat-tag {
-      font-size: 0.7rem;
-      color: var(--primary);
-      margin-top: 4px;
-    }
-
-    .conversation {
-      margin-top: 4px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px dashed rgba(148, 163, 184, 0.4);
-    }
-
-    .conversation-line {
-      font-size: 0.78rem;
-      margin-bottom: 4px;
-    }
-
-    .conversation-line span {
-      opacity: 0.8;
-    }
-
-    /* Sections */
+    /* SECCIONES GENERALES */
 
     section {
-      margin-bottom: 48px;
+      margin-bottom: 52px;
     }
 
     .section-label {
@@ -259,88 +194,87 @@
     }
 
     .section-title {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       margin-bottom: 8px;
     }
 
     .section-desc {
       font-size: 0.95rem;
       color: var(--text-muted);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
+      max-width: 40rem;
     }
 
-    .grid-4 {
+    /* BLOQUES */
+
+    .blocks {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
+      gap: 18px;
     }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .card {
-      border-radius: 16px;
-      padding: 16px 16px 14px;
-      background: linear-gradient(160deg, #111111 0, #050505 100%);
+    .block-card {
+      border-radius: 22px;
+      padding: 20px 20px 18px;
+      background: radial-gradient(circle at top, #020617 0, #020617 55%, #000 100%);
       border: 1px solid var(--border-subtle);
-      font-size: 0.9rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
     }
 
-    .card h3 {
-      font-size: 1rem;
-      margin-bottom: 6px;
-    }
-
-    .card p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-    }
-
-    .card-tag {
-      display: inline-block;
-      font-size: 0.7rem;
+    .block-eyebrow {
+      font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       color: var(--primary);
       margin-bottom: 6px;
     }
 
-    .steps {
-      counter-reset: step;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
+    .block-title {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
     }
 
-    .step {
-      position: relative;
-      padding: 16px 16px 18px;
-      border-radius: 16px;
-      background: radial-gradient(circle at top, #111827 0, #020617 55%);
-      border: 1px solid var(--border-subtle);
+    .block-text {
       font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
     }
 
-    .step::before {
-      counter-increment: step;
-      content: "0" counter(step);
-      position: absolute;
-      top: 10px;
-      right: 14px;
-      font-size: 0.8rem;
-      color: var(--primary);
-      opacity: 0.8;
+    .block-list {
+      list-style: none;
+      margin-bottom: 12px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      padding: 0;
     }
 
-    .step h3 {
-      font-size: 1rem;
+    .block-list li {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #020617;
+      border: 1px solid #1e293b;
       margin-bottom: 6px;
     }
 
-    .metrics {
+    .block-list li::before {
+      content: "• ";
+      color: var(--primary);
+      margin-right: 4px;
+    }
+
+    .block-tagline {
+      display: inline-block;
+      margin-top: 2px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    /* MÉTRICAS */
+
+    .metrics-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
@@ -349,8 +283,9 @@
     .metric {
       padding: 14px 16px;
       border-radius: 16px;
-      background: #050505;
+      background: #020617;
       border: 1px solid var(--border-subtle);
+      text-align: left;
     }
 
     .metric-value {
@@ -365,7 +300,7 @@
       color: var(--text-muted);
     }
 
-    /* CTA / FORM */
+    /* CTA / FORM / CUESTIONARIO */
 
     .cta {
       display: grid;
@@ -373,20 +308,9 @@
       gap: 24px;
       padding: 24px 20px 22px;
       border-radius: 20px;
-      background: radial-gradient(circle at top, #111827 0, #020617 60%);
+      background: radial-gradient(circle at top, #020617 0, #020617 60%, #000 100%);
       border: 1px solid var(--border-subtle);
       align-items: start;
-    }
-
-    .cta h2 {
-      font-size: 1.4rem;
-      margin-bottom: 6px;
-    }
-
-    .cta p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 12px;
     }
 
     form {
@@ -404,20 +328,22 @@
     }
 
     input,
-    textarea {
-      background: #050505;
+    textarea,
+    select {
+      background: #020617;
       border-radius: 10px;
       border: 1px solid var(--border-subtle);
       padding: 8px 10px;
       color: var(--text-main);
       font-size: 0.9rem;
       outline: none;
-      transition: border 0.15s ease-out, box-shadow 0.15s ease-out;
       font-family: inherit;
+      transition: border 0.15s ease-out, box-shadow 0.15s ease-out;
     }
 
     input:focus,
-    textarea:focus {
+    textarea:focus,
+    select:focus {
       border-color: var(--primary);
       box-shadow: 0 0 0 1px rgba(77, 226, 184, 0.4);
     }
@@ -433,10 +359,17 @@
       opacity: 0.85;
     }
 
+    .quiz-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    /* FOOTER */
+
     footer {
       margin-top: 40px;
       padding-top: 18px;
-      border-top: 1px solid #111827;
+      border-top: 1px solid #020617;
       font-size: 0.8rem;
       color: var(--text-muted);
       display: flex;
@@ -450,20 +383,18 @@
       opacity: 0.9;
     }
 
-    /* Responsive */
+    /* RESPONSIVE */
 
     @media (max-width: 900px) {
       .hero {
         grid-template-columns: minmax(0, 1fr);
       }
 
-      .hero-right {
-        order: -1;
+      .hero-cta-card {
+        max-width: 100%;
       }
 
-      .grid-4,
-      .steps,
-      .metrics {
+      .metrics-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -479,14 +410,7 @@
       }
 
       nav {
-        display: none; /* mantenerlo ultra simple en móvil */
-      }
-
-      .grid-4,
-      .steps,
-      .metrics,
-      .grid-3 {
-        grid-template-columns: minmax(0, 1fr);
+        display: none;
       }
 
       .page {
@@ -500,6 +424,10 @@
       .cta {
         padding: 18px 16px;
       }
+
+      .metrics-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
   </style>
 </head>
@@ -508,153 +436,141 @@
     <header>
       <div class="logo">LÒKAL SYSTEMS</div>
       <nav>
-        <a href="#beneficios">Servicios</a>
-        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#bloques">Sistema</a>
         <a href="#resultados">Resultados</a>
+        <a href="#cuestionario">Cuestionario</a>
         <a href="#demo">Demo</a>
       </nav>
       <a href="#demo" class="btn btn-primary">Solicitar demo</a>
     </header>
 
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="top">
       <div>
-        <div class="hero-eyebrow">Automatización para clínicas y centros estéticos</div>
-        <h1>Automatizamos tu clínica para que ganes tiempo y aumentes citas.</h1>
-        <p>
-          LÒKAL Systems conecta WhatsApp, citas y seguimiento en un sistema
-          inteligente que trabaja por tu equipo: menos saturación, más visitas
-          confirmadas y pacientes mejor atendidos.
+        <div class="hero-eyebrow">Automatización para negocios y profesionales</div>
+        <h1 class="hero-title">Automatiza WhatsApp, citas y seguimiento sin cambiar tus procesos.</h1>
+        <p class="hero-subtitle">
+          LÒKAL Systems conecta tus canales de comunicación en un sistema
+          inteligente que reduce tu carga operativa y aumenta tus citas y ventas
+          confirmadas.
         </p>
+
         <div class="hero-cta">
           <a href="#demo" class="btn btn-primary">Ver demo rápida</a>
-          <a href="#demo" class="btn btn-ghost">Solicitar implementación</a>
+
+          <a
+            href="https://wa.me/34600357064?text=Hola%20Ernesto,%20he%20visto%20L%C3%92KAL%20Systems%20y%20quiero%20ver%20si%20podemos%20automatizar%20mi%20negocio."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-ghost"
+          >
+            Hablar por WhatsApp
+          </a>
+
+          <a
+            href="mailto:info@lokalsystems.com?subject=Quiero%20info%20sobre%20L%C3%92KAL%20Systems&body=Hola%20Ernesto,%0D%0A%0D%0AMe%20gustar%C3%ADa%20saber%20si%20L%C3%92KAL%20puede%20encajar%20con%20mi%20negocio.%0D%0A"
+            class="btn btn-ghost"
+          >
+            Escribir por email
+          </a>
         </div>
-        <div class="hero-meta">
-          Sin cambios drásticos en vuestro software actual. Empezamos con una
-          demo personalizada de 2 minutos.
-        </div>
+
+        <p class="hero-note">
+          Sin cambios drásticos. Demo personalizada en menos de 20 minutos.
+        </p>
       </div>
 
-      <div class="hero-right">
-        <div class="dash-header">
-          <span>Panel de citas · LÒKAL</span>
-          <span class="pill">Live</span>
-        </div>
-        <div class="stat-row">
-          <div class="stat">
-            <div class="stat-label">Citas confirmadas este mes</div>
-            <div class="stat-value">+37%</div>
-            <div class="stat-tag">vs. mes anterior</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Tiempo en WhatsApp</div>
-            <div class="stat-value">-60%</div>
-            <div class="stat-tag">equipo recepción</div>
-          </div>
-        </div>
-        <div class="conversation">
-          <div class="conversation-line">
-            <strong>Paciente</strong>: “¿Tenéis hueco esta semana por la tarde?”
-          </div>
-          <div class="conversation-line">
-            <strong>LÒKAL</strong> <span>· automático</span>: “Sí, podemos verte
-            el jueves a las 18:00 o el viernes a las 19:15. ¿Qué prefieres?”
-          </div>
-          <div class="conversation-line">
-            <strong>Paciente</strong>: “Viernes 19:15 🙌”
-          </div>
-        </div>
-      </div>
-    </section>
+      <div class="hero-cta-card">
+        <h3 style="font-size: 1.1rem; margin: 0; color: var(--primary);">
+          ¿LÒKAL encaja contigo?
+        </h3>
 
-    <!-- BENEFICIOS -->
-    <section id="beneficios">
-      <div class="section-label">Qué hace LÒKAL</div>
-      <h2 class="section-title">Todo lo que tu clínica hace a mano, ahora en automático.</h2>
-      <p class="section-desc">
-        Diseñamos sistemas que se adaptan a la forma real en la que trabajáis:
-        WhatsApp, llamadas y agenda. Tú sigues mandando, LÒKAL se encarga del
-        trabajo repetitivo.
-      </p>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+          Descúbrelo en 2 minutos con un cuestionario simple diseñado para ver tu situación real.
+        </p>
 
-      <div class="grid-4">
-        <div class="card">
-          <div class="card-tag">WhatsApp</div>
-          <h3>Automatización de conversaciones</h3>
-          <p>
-            Respuestas inteligentes, filtros por tipo de paciente y derivación
-            directa a cita sin que recepción tenga que contestar todo.
-          </p>
-        </div>
+        <ul style="list-style: none; padding: 0; margin: 6px 0 0 0; color: var(--text-muted); font-size: 0.88rem;">
+          <li>• Sin compromiso</li>
+          <li>• Te da claridad al momento</li>
+          <li>• Te dice si LÒKAL te ayudará o no</li>
+        </ul>
 
-        <div class="card">
-          <div class="card-tag">Citas</div>
-          <h3>Gestión inteligente de agenda</h3>
-          <p>
-            Confirmaciones, recordatorios, reenganche de cancelaciones y
-            mensajes post-visita para aumentar recurrencia.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="card-tag">Integración</div>
-          <h3>Encaja con tu sistema actual</h3>
-          <p>
-            Nos apoyamos en las herramientas que ya usáis (software de citas,
-            hojas, WhatsApp) y construimos encima sin complicar nada.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="card-tag">Crecimiento</div>
-          <h3>Más pacientes, mismo equipo</h3>
-          <p>
-            Menos tareas repetitivas, más foco en atención y ventas
-            cualificadas. Tu equipo llega a más sin trabajar más horas.
-          </p>
-        </div>
+        <a href="#cuestionario" class="btn btn-primary" style="margin-top: 10px;">
+          Responder cuestionario
+        </a>
       </div>
     </section>
 
-    <!-- CÓMO FUNCIONA -->
-    <section id="como-funciona">
-      <div class="section-label">Cómo funciona</div>
-      <h2 class="section-title">Una implementación sencilla, pensada para clínicas ocupadas.</h2>
+    <!-- BLOQUES -->
+    <section id="bloques">
+      <div class="section-label">Qué construimos para tu negocio</div>
+      <h2 class="section-title">Tres bloques para que tu negocio funcione sin quemarte.</h2>
       <p class="section-desc">
-        No vais a “aprender una nueva plataforma”. Nosotros configuramos, probamos
-        y os dejamos un sistema que simplemente funciona en vuestro día a día.
+        No añadimos “otra herramienta más”. Montamos un sistema simple: un
+        asistente que habla por ti, una agenda que se organiza sola y una
+        automatización que conecta todo.
       </p>
 
-      <div class="steps">
-        <div class="step">
-          <h3>1. Análisis inicial</h3>
-          <p>
-            Entendemos cómo gestionáis ahora WhatsApp, llamadas y citas. Detectamos
-            cuellos de botella y oportunidades rápidas.
+      <div class="blocks">
+        <!-- BLOQUE 1 -->
+        <article class="block-card">
+          <div class="block-eyebrow">Bloque 01</div>
+          <h3 class="block-title">Asistente de Mensajería IA</h3>
+          <p class="block-text">
+            Elimina la necesidad de responder manualmente cada mensaje. Tu
+            asistente IA interactúa con clientes, cualifica su interés y deriva a
+            reserva o contacto sin que tu equipo pierda tiempo en conversaciones repetitivas.
           </p>
-        </div>
-        <div class="step">
-          <h3>2. Diseño del sistema</h3>
-          <p>
-            Definimos mensajes, flujos y reglas de automatización adaptadas a vuestra
-            clínica y a vuestro tono.
+          <ul class="block-list">
+            <li>Respuestas automáticas 24/7 en WhatsApp y redes sociales.</li>
+            <li>Cualificación del cliente según su intención real.</li>
+            <li>Preguntas clave que filtran sin esfuerzo manual.</li>
+            <li>Derivación directa a reserva, pago o contacto humano.</li>
+          </ul>
+          <span class="block-tagline">
+            Reduce hasta un 70% el tiempo que pierdes en mensajes.
+          </span>
+        </article>
+
+        <!-- BLOQUE 2 -->
+        <article class="block-card">
+          <div class="block-eyebrow">Bloque 02</div>
+          <h3 class="block-title">Sistema de Reservas Inteligente</h3>
+          <p class="block-text">
+            Automatiza tu agenda, confirma citas y reduce cancelaciones. LÒKAL
+            gestiona recordatorios, reenganche de ausencias y llenado de huecos
+            vacíos sin perseguir a cada persona.
           </p>
-        </div>
-        <div class="step">
-          <h3>3. Activación y pruebas</h3>
-          <p>
-            Ponemos LÒKAL a funcionar en modo controlado, revisando respuestas y
-            ajustes con vuestro equipo.
+          <ul class="block-list">
+            <li>Enlaces de reserva simples que envías por cualquier canal.</li>
+            <li>Recordatorios automáticos antes de cada cita.</li>
+            <li>Reenganche de ausencias o huecos vacíos en agenda.</li>
+            <li>Calendario claro y centralizado para todo el equipo.</li>
+          </ul>
+          <span class="block-tagline">
+            Llena más huecos sin invertir más tiempo.
+          </span>
+        </article>
+
+        <!-- BLOQUE 3 -->
+        <article class="block-card">
+          <div class="block-eyebrow">Bloque 03</div>
+          <h3 class="block-title">Automatización Operativa Completa</h3>
+          <p class="block-text">
+            Conecta tus canales y automatiza tareas repetitivas. Desde anuncios
+            hasta seguimiento post-atención, todo fluye hacia un solo lugar con
+            métricas claras que te dicen exactamente qué funciona.
           </p>
-        </div>
-        <div class="step">
-          <h3>4. Resultados y optimización</h3>
-          <p>
-            Medimos citas, tiempos y satisfacción, y ajustamos hasta dejar el
-            sistema fino para el día a día.
-          </p>
-        </div>
+          <ul class="block-list">
+            <li>Flujos automáticos desde anuncios y redes sociales.</li>
+            <li>Leads centralizados en un solo lugar sin perder ninguno.</li>
+            <li>Seguimiento post-atención para aumentar recurrencia.</li>
+            <li>Panel simple con métricas clave de conversión y citas.</li>
+          </ul>
+          <span class="block-tagline">
+            Gana horas a la semana y claridad en tus números.
+          </span>
+        </article>
       </div>
     </section>
 
@@ -663,15 +579,15 @@
       <div class="section-label">Resultados</div>
       <h2 class="section-title">Lo que buscamos en cada implementación.</h2>
       <p class="section-desc">
-        Números orientativos basados en benchmarks del sector y pruebas internas.
-        Cada clínica es única, pero el objetivo siempre es el mismo: más citas,
-        menos fricción.
+        Números orientativos basados en benchmarks y pruebas internas. Cada
+        negocio es distinto, pero el objetivo siempre es el mismo: más citas,
+        menos fricción y más tiempo para ti.
       </p>
 
-      <div class="metrics">
+      <div class="metrics-grid">
         <div class="metric">
           <div class="metric-value">+37%</div>
-          <div class="metric-label">más citas confirmadas</div>
+          <div class="metric-label">más citas / reservas confirmadas</div>
         </div>
         <div class="metric">
           <div class="metric-value">-60%</div>
@@ -679,7 +595,7 @@
         </div>
         <div class="metric">
           <div class="metric-value">+27%</div>
-          <div class="metric-label">pacientes nuevos al año</div>
+          <div class="metric-label">clientes nuevos al año</div>
         </div>
         <div class="metric">
           <div class="metric-value">4,9/5</div>
@@ -688,35 +604,106 @@
       </div>
     </section>
 
-    <!-- DEMO / FORMULARIO -->
+    <!-- CUESTIONARIO RÁPIDO -->
+    <section id="cuestionario" class="cta">
+      <div>
+        <div class="section-label">Cuestionario rápido</div>
+        <h2 class="section-title">En 2 minutos vemos si LÒKAL encaja contigo.</h2>
+        <p class="section-desc">
+          Responde estas preguntas simples y tendrás claridad sobre si tiene
+          sentido montar el sistema ahora o más adelante.
+        </p>
+        <p class="helper">
+          No es un contrato ni una propuesta. Solo contexto para ver si de verdad
+          podemos ayudarte.
+        </p>
+      </div>
+
+      <div>
+        <form class="quiz-grid">
+          <label>
+            ¿Qué tipo de negocio tienes?
+            <select name="tipo-negocio">
+              <option>Negocio local (restaurante, centro, tienda...)</option>
+              <option>Servicio profesional (coach, consultor, freelance...)</option>
+              <option>Empresa con equipo comercial</option>
+              <option>Proyecto que está arrancando</option>
+            </select>
+          </label>
+
+          <label>
+            ¿Cuántos mensajes / consultas recibes al día?
+            <select name="volumen-mensajes">
+              <option>Menos de 10</option>
+              <option>Entre 10 y 30</option>
+              <option>Entre 30 y 80</option>
+              <option>Más de 80</option>
+            </select>
+          </label>
+
+          <label>
+            ¿Qué te gustaría mejorar primero?
+            <select name="prioridad">
+              <option>Responder mensajes más rápido</option>
+              <option>Llenar agenda y reservas</option>
+              <option>Organizar mejor los leads</option>
+              <option>Automatizar todo lo posible</option>
+            </select>
+          </label>
+
+          <label>
+            ¿Cuándo te gustaría tener el sistema funcionando?
+            <select name="cuando">
+              <option>Lo antes posible</option>
+              <option>Este mes</option>
+              <option>En los próximos 3 meses</option>
+              <option>Solo estoy mirando opciones</option>
+            </select>
+          </label>
+
+          <button type="submit" class="btn btn-primary">
+            Enviar respuestas
+          </button>
+
+          <div class="helper">
+            Ahora mismo este cuestionario es solo visual. Puedes conectarlo luego
+            a tu CRM, email o Make/n8n para que las respuestas lleguen directo a
+            <strong>info@lokalsystems.com</strong>.
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- DEMO -->
     <section id="demo" class="cta">
       <div>
         <div class="section-label">Demo personalizada</div>
-        <h2>Te enseñamos LÒKAL aplicado a tu propia clínica.</h2>
-        <p>
-          Déjanos tus datos y preparamos una demo de 15–20 minutos centrada en
-          vuestro caso: tipo de pacientes, especialidades y volumen de citas.
+        <h2 class="section-title">Te enseñamos LÒKAL aplicado a tu propio negocio.</h2>
+        <p class="section-desc">
+          Preparamos una demo de 15–20 minutos centrada en tu caso: tipo de
+          clientes, servicios y volumen de consultas o reservas. Sin compromiso.
         </p>
         <p class="helper">
-          Sin compromiso. Solo ves si tiene sentido para vosotros ahora mismo.
+          Solo ves si tiene sentido para ti ahora mismo. Si no, te llevas claridad
+          sobre qué podrías automatizar en el futuro.
         </p>
       </div>
 
       <div>
         <form>
           <label>
-            Nombre de la clínica
-            <input type="text" name="clinica" placeholder="Clínica Mandri, Centro X..." required />
+            Nombre del negocio o proyecto
+            <input type="text" name="negocio" placeholder="Nombre del negocio o marca..." required />
           </label>
 
           <label>
             Persona de contacto
-            <input type="text" name="contacto" placeholder="Nombre y cargo" required />
+            <input type="text" name="contacto" placeholder="Nombre y rol" required />
           </label>
 
           <label>
             Email
-            <input type="email" name="email" placeholder="correo@clinica.com" required />
+            <input type="email" name="email" placeholder="correo@negocio.com" required />
           </label>
 
           <label>
@@ -725,8 +712,8 @@
           </label>
 
           <label>
-            Mejor horario para contactar (opcional)
-            <input type="text" name="horario" placeholder="Ej: Mañanas de 10:00 a 13:00" />
+            Cuéntanos brevemente tu situación (opcional)
+            <textarea name="contexto" placeholder="Ej: Muchos mensajes, agenda desordenada, quiero automatizar reservas..."></textarea>
           </label>
 
           <button type="submit" class="btn btn-primary">
@@ -734,8 +721,8 @@
           </button>
 
           <div class="helper">
-            Este formulario ahora mismo es solo visual. Puedes conectarlo a tu CRM,
-            WhatsApp o a un servicio como Make, n8n o Zapier cuando quieras.
+            Este formulario también es visual por ahora. Puedes conectarlo a tu
+            sistema de correo o automatización cuando quieras.
           </div>
         </form>
       </div>
